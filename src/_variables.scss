@@ -1,0 +1,48 @@
+// Set Colors
+$primary-dark: #444;
+$primary-red: #990000;
+
+$mobile-breakpoint: 600px;
+// $tablet-breakpoint: 900px;
+$desktop-breakpoint: 900px;
+
+@mixin mobile {
+  @media (max-width: #{$mobile-breakpoint - 1px}) {
+    @content;
+  }
+}
+@mixin non-mobile {
+  @media (min-width: #{$mobile-breakpoint}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$desktop-breakpoint - 1px}) {
+    @content;
+  }
+}
+@mixin only-tablet {
+  @media (min-width: #{$mobile-breakpoint}) and (max-width: #{$desktop-breakpoint - 1px}) {
+    @content;
+  }
+}
+@mixin non-tablet {
+  @media (max-width: #{$mobile-breakpoint - 1px}) {
+    @content;
+  }
+  @media (min-width: #{$desktop-breakpoint}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-breakpoint}) {
+    @content;
+  }
+}
+@mixin non-desktop {
+  @media (max-width: #{$desktop-breakpoint - 1px}) {
+    @content;
+  }
+}

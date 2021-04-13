@@ -1,0 +1,33 @@
+@import '../../_variables';
+
+:host {
+  display: contents;
+}
+// hr {
+//   margin-top: 0rem;
+//   margin-bottom: 1rem;
+// }
+#basic-line {
+  width: var(--lineWidth);
+  margin: auto;
+  grid-column: 1 / -1;
+  hr {
+    margin: var(--margin) 0;
+  }
+}
+.justify-content-between {
+  grid-column: 1 / -1;
+  align-items: center;
+  div {
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+  #divider-label {
+    flex: 1 0 auto;
+  }
+}
+.line {
+  width: var(--lineWidth);
+  border-bottom: 1px solid darken(#DDD, 5);
+  margin: var(--margin) 0;
+}

@@ -1,0 +1,28 @@
+.col-a {
+  label {
+    margin-top: 5px;
+  }
+  &.first-column {
+    grid-column: var(--startingCol);
+  }
+  &.custom-label-width {
+    width: var(--individualLabelWidth);
+    /* Make sure that setting this doesn't mess anything up */
+    box-sizing: content-box;
+    margin-left: auto;
+  }
+}
+.col-b {
+  align-self: center;
+  // grid-column: span var(--columnSpan);
+  grid-column: var(--startingCol) / span var(--columnSpan);
+  .form-control {
+    grid-row-start: 1;
+  }
+  &.no-label {
+  }
+  // This means that the starting column is auto.
+  &.no-start {
+    grid-column-end: span var(--columnSpan);
+  }
+}

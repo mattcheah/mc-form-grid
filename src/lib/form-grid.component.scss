@@ -1,0 +1,97 @@
+@import '../_variables';
+
+::ng-deep {
+  .form-grid {
+    width: 100%;
+    display: grid;
+    grid-gap: 10px;
+    margin-bottom: 10px;
+
+    &.auto-labels {
+      grid-template-columns: repeat(var(--gridColumns), var(--labelWidth) 1fr);
+
+      // IMPORTANT: ON Mobile, The app-form-grid cannot be more than 1 column. (technically 2 columns - label and field)
+      // The @include mobile {} statements disregard all CSS variables and ensure that col-a and col-b only take up 1 column each and start and end on col 1 and 2, respectively.
+      @include mobile {
+        grid-template-columns: var(--labelWidth) 1fr;
+      }
+    }
+    &.max-width-labels {
+      grid-template-columns: repeat(
+        var(--gridColumns),
+        fit-content(var(--maxLabelWidth)) 1fr
+      );
+      @include mobile {
+        grid-template-columns: fit-content(var(--maxLabelWidth)) 1fr;
+      }
+    }
+
+    app-form-input,
+    app-form-custom {
+      // display: flex;
+      // justify-content: space-between;
+      display: contents;
+    }
+
+    .grid-item {
+      // display: flex;
+      // align-items: center;
+    }
+
+    .col-a {
+      display: flex;
+      // align-items: center;
+      justify-content: flex-end;
+      // justify-content: flex-end;
+      padding-left: var(--labelPadding);
+      // max-width: var(--maxLabelWidth);
+      @include mobile {
+        grid-column: 1 / 1 !important;
+        &.custom-label-width {
+          // If we have specified a custom label width, throw that out the window.
+          width: auto !important;
+        }
+      }
+    }
+
+    &.text-align-left .col-a {
+      justify-content: flex-start;
+    }
+
+    @include mobile {
+      .col-b.no-label {
+        // grid-column-start: span 2;
+        grid-column: 1 / span 2;
+        // grid-column: 2 / 2 !important;
+        // &.no-label {
+        //   grid-column-start: 1 !important;
+        //   grid-column-end: 2 !important;
+        // }
+      }
+      .col-b:not(.no-label) {
+        grid-column: 2 / 2;
+      }
+    }
+
+    &.form-grid-bold {
+      label {
+        font-weight: 700;
+      }
+    }
+  }
+
+  // Fix for IE and other browsers that don't have CSS grid. Make sure that text label is on the left side instead of the right, directly above the form input.
+  .no-cssgrid {
+    .form-grid {
+      app-form-input,
+      app-form-custom {
+        .col-a {
+          text-align: left;
+        }
+        .col-b {
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}

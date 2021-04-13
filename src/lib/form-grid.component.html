@@ -1,0 +1,13 @@
+<div
+  class="form-grid"
+  [ngClass]="{
+    'form-grid-bold': boldLabel,
+    'text-align-left': textAlignLeft,
+    'auto-labels': maxLabelWidth === 'auto',
+    'max-width-labels': maxLabelWidth !== 'auto',
+    'error-highlight-on-touched': errorHighlightOnTouched,
+    'error-highlight': errorHighlight
+  }"
+>
+  <ng-content></ng-content>
+</div>
