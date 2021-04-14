@@ -13,7 +13,7 @@ import {
 import { combineLatest, Subscription } from 'rxjs';
 import { FormCustomComponent } from './form-custom/form-custom.component';
 import { FormInputComponent } from './form-input/form-input.component';
-import { Options, OPTIONS, defaultOptions } from './optionsConfig';
+import { FormGridOptions, FORM_GRID_OPTIONS, defaultFormGridOptions } from './optionsConfig';
 
 /**
  * A component that creates a grid within it, with the number of columns specified by the `columns` Input.
@@ -97,16 +97,16 @@ export class FormGridComponent implements OnInit, AfterViewInit {
 
   childFormChangesSubscription: Subscription;
 
-  constructor(private element: ElementRef, @Inject(OPTIONS) private options: Options) {
-    this.columns ??= this.options.formGrid.columns ?? defaultOptions.formGrid.columns;
-    this.labelPadding ??= this.options.formGrid.labelPadding ?? defaultOptions.formGrid.labelPadding;
-    this.labelWidth ??= this.options.formGrid.labelWidth ?? defaultOptions.formGrid.labelWidth;
-    this.maxLabelWidth ??= this.options.formGrid.maxLabelWidth ?? defaultOptions.formGrid.maxLabelWidth;
-    this.boldLabel ??= this.options.formGrid.boldLabel ?? defaultOptions.formGrid.boldLabel;
-    this.errorHighlight ??= this.options.formGrid.errorHighlight ?? defaultOptions.formGrid.errorHighlight;
-    this.errorHighlightOnTouched ??= this.options.formGrid.errorHighlightOnTouched ?? defaultOptions.formGrid.errorHighlightOnTouched;
-    this.appendColon ??= this.options.formGrid.appendColon ?? defaultOptions.formGrid.appendColon;
-    this.textAlignLeft ??= this.options.formGrid.textAlignLeft ?? defaultOptions.formGrid.textAlignLeft;
+  constructor(private element: ElementRef, @Inject(FORM_GRID_OPTIONS) private options: FormGridOptions) {
+    this.columns ??= this.options.columns ?? defaultFormGridOptions.columns;
+    this.labelPadding ??= this.options.labelPadding ?? defaultFormGridOptions.labelPadding;
+    this.labelWidth ??= this.options.labelWidth ?? defaultFormGridOptions.labelWidth;
+    this.maxLabelWidth ??= this.options.maxLabelWidth ?? defaultFormGridOptions.maxLabelWidth;
+    this.boldLabel ??= this.options.boldLabel ?? defaultFormGridOptions.boldLabel;
+    this.errorHighlight ??= this.options.errorHighlight ?? defaultFormGridOptions.errorHighlight;
+    this.errorHighlightOnTouched ??= this.options.errorHighlightOnTouched ?? defaultFormGridOptions.errorHighlightOnTouched;
+    this.appendColon ??= this.options.appendColon ?? defaultFormGridOptions.appendColon;
+    this.textAlignLeft ??= this.options.textAlignLeft ?? defaultFormGridOptions.textAlignLeft;
   }
 
   ngOnInit(): void {
