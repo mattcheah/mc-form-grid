@@ -6,9 +6,11 @@ import {
   AfterViewInit,
   TemplateRef,
   OnDestroy,
+  Inject,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { defaultFormInputOptions, FormInputOptions, FORM_INPUT_OPTIONS } from '../optionsConfig';
 
 @Component({
   selector: '[mc-form-input], mc-form-input',
@@ -82,7 +84,25 @@ export class FormInputComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   controlStatusSubscription: Subscription;
 
-  constructor(private element: ElementRef) {}
+  constructor(private element: ElementRef, @Inject(FORM_INPUT_OPTIONS) private options: FormInputOptions) {
+    this.label ??= this.options.label ?? defaultFormInputOptions.label;
+    this.columnSpan ??= this.options.columnSpan ?? defaultFormInputOptions.columnSpan;
+    this.rowSpan ??= this.options.rowSpan ?? defaultFormInputOptions.rowSpan;
+    this.labelWidth ??= this.options.labelWidth ?? defaultFormInputOptions.labelWidth;
+    this.missingInputText ??= this.options.missingInputText ?? defaultFormInputOptions.missingInputText;
+    this.multiInput ??= this.options.multiInput ?? defaultFormInputOptions.multiInput;
+    this.startingCol ??= this.options.startingCol ?? defaultFormInputOptions.startingCol;
+    this.questionText ??= this.options.questionText ?? defaultFormInputOptions.questionText;
+    this.questionTitle ??= this.options.questionTitle ?? defaultFormInputOptions.questionTitle;
+    this.questionPlacement ??= this.options.questionPlacement ?? defaultFormInputOptions.questionPlacement;
+    this.containerBody ??= this.options.containerBody ?? defaultFormInputOptions.containerBody;
+    this.errorMsg ??= this.options.errorMsg ?? defaultFormInputOptions.errorMsg;
+    this.invalidInput ??= this.options.invalidInput ?? defaultFormInputOptions.invalidInput;
+    this.control ??= this.options.control ?? defaultFormInputOptions.control;
+    this.validationMessages ??= this.options.validationMessages ?? defaultFormInputOptions.validationMessages;
+    this.alignVertical ??= this.options.alignVertical ?? defaultFormInputOptions.alignVertical;
+
+  }
 
   ngOnInit(): void {
     if (!this.columnSpan) {

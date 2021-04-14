@@ -4,7 +4,9 @@ import {
   Input,
   ElementRef,
   AfterViewInit,
+  Inject,
 } from '@angular/core';
+import { defaultFormCustomOptions, FormCustomOptions, FORM_CUSTOM_OPTIONS } from '../optionsConfig';
 
 @Component({
   selector: 'mc-form-custom',
@@ -36,13 +38,20 @@ export class FormCustomComponent implements OnInit, AfterViewInit {
    */
   @Input() missingInputText: string | string[];
 
-  @Input() startingCol: string | number = 'auto';
+  @Input() startingCol: string | number;
 
   calculatedColumnSpan: number | 'auto';
 
   childContentLoaded = false;
 
-  constructor(private element: ElementRef) {}
+  constructor(private element: ElementRef, @Inject(FORM_CUSTOM_OPTIONS) private options: FormCustomOptions) {
+    this.label ??= options.label ?? defaultFormCustomOptions.label;
+    this.noLabel ??= options.noLabel ?? defaultFormCustomOptions.noLabel;
+    this.columnSpan ??= options.columnSpan ?? defaultFormCustomOptions.columnSpan;
+    this.labelWidth ??= options.labelWidth ?? defaultFormCustomOptions.labelWidth;
+    this.missingInputText ??= options.missingInputText ?? defaultFormCustomOptions.missingInputText;
+    this.startingCol??= options.startingCol ?? defaultFormCustomOptions.startingCol;
+  }
 
   ngOnInit(): void {
     this.noLabel = this.noLabel ?? !this.label;
