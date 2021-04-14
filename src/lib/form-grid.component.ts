@@ -25,19 +25,19 @@ import { FormInputComponent } from './form-input/form-input.component';
  * Required fields can show a red highlight and error message either:
  *  - After a field has been touched (and it's invalid) or
  *  - Whenever `errorHighlight` is true (and fields are invalid)
- * Error messages are set in each app-form-input OR are pulled from a FormControl if a FormControls is passed to the [control] directive of the child <app-form-input>.
+ * Error messages are set in each mc-form-input OR are pulled from a FormControl if a FormControls is passed to the [control] directive of the child <mc-form-input>.
  *
- * MUST only accept <app-form-input>, <app-form-custom>, or <app-form-divider> elements within itself.
+ * MUST only accept <mc-form-input>, <mc-form-custom>, or <mc-form-divider> elements within itself.
  * @example
  * // Good:
- * <app-form-grid columns="2" boldLabel="true">
- *    <app-form-input columnSpan="1" label="My First Input">
+ * <mc-form-grid columns="2" boldLabel="true">
+ *    <mc-form-input columnSpan="1" label="My First Input">
  *        <input type="text" value="abcde">
- *    </app-form-input>
- * </app-form-width>
+ *    </mc-form-input>
+ * </mc-form-width>
  *
  * // Bad:
- * <app-form-grid columns="2" appendColon="false">
+ * <mc-form-grid columns="2" appendColon="false">
  *    <div class="d-flex justify-content-between">
  *        <div class="w-50">
  *            <input type="text" value="don't do this!">
@@ -46,7 +46,7 @@ import { FormInputComponent } from './form-input/form-input.component';
  *            <input type="text" value="don't do this!">
  *        </div>
  *    </div>
- * </app-form-grid>
+ * </mc-form-grid>
  */
 @Component({
   selector: 'mc-form-grid',
@@ -56,9 +56,9 @@ import { FormInputComponent } from './form-input/form-input.component';
 export class FormGridComponent implements OnInit, AfterViewInit {
   /**
    * Choose how many columns this grid has. Defaults to 1.
-   * A single column as defined here consists of 1 area for a label and 1 area for an input (if using <app-form-input>)
-   * or other elements (if using <app-form-custom>).
-   * App-form-grid will create sub-columns from this number to make these label and input areas, so the actual number of columns in the grid will be `columns * 2`
+   * A single column as defined here consists of 1 area for a label and 1 area for an input (if using <mc-form-input>)
+   * or other elements (if using <mc-form-custom>).
+   * mc-form-grid will create sub-columns from this number to make these label and input areas, so the actual number of columns in the grid will be `columns * 2`
    * For all intents and purposes though, this piece of information can be ignored.
    */
   @Input() columns = '1';
@@ -84,7 +84,7 @@ export class FormGridComponent implements OnInit, AfterViewInit {
    * This is set to true by default even though it will be set to false on NgOnInit(). This is a fallback just in case `errorHighlightOnTouched` is false.
    * In that case, the errors will show up immediately (as opposed to never showing up if `errorHighlight` is not set.)
    *
-   * @example <app-form-grid [errorHighlight]="formHasBeenSubmitted"> - only displays errors after a form has been submitted and not before.
+   * @example <mc-form-grid [errorHighlight]="formHasBeenSubmitted"> - only displays errors after a form has been submitted and not before.
    * */
   @Input() errorHighlight = true;
 

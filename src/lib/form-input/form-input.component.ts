@@ -11,7 +11,7 @@ import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: '[app-form-input], app-form-input',
+  selector: '[mc-form-input], mc-form-input',
   templateUrl: './form-input.component.html',
   styleUrls: ['./form-input.component.scss'],
 })
@@ -112,7 +112,7 @@ export class FormInputComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (this.validationMessages && !this.control) {
       console.warn(
-        'Warning: Validation Messages set in app-form-input will not be show unless the formControl is also passed in as `this.control`'
+        'Warning: Validation Messages set in mc-form-input will not be show unless the formControl is also passed in as `this.control`'
       );
     }
   }
@@ -152,7 +152,7 @@ export class FormInputComponent implements OnInit, AfterViewInit, OnDestroy {
         inputGroup.appendChild(inputGroupAppend);
       } catch (e) {
         console.error(
-          'Error: The questionText Input() directive must be used with a input[text] or select element inside app-form-input!'
+          'Error: The questionText Input() directive must be used with a input[text] or select element inside mc-form-input!'
         );
       }
     }

@@ -10,6 +10,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [FormGridComponent, FormInputComponent, FormCustomComponent, FormDividerComponent],
   imports: [CommonModule, ReactiveFormsModule, NgbModule],
-  exports: [FormGridComponent, FormInputComponent, FormCustomComponent, FormDividerComponent]
+  exports: [FormGridComponent, FormInputComponent, FormCustomComponent, FormDividerComponent, NgbModule]
 })
 export class McFormGridModule { }
