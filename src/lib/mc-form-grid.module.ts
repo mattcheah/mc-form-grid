@@ -6,10 +6,15 @@ import { FormDividerComponent } from './form-divider/form-divider.component';
 import { FormGridComponent } from './form-grid.component';
 import { FormInputComponent } from './form-input/form-input.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { defaultOptions, OPTIONS } from './optionsConfig';
+
 
 @NgModule({
   declarations: [FormGridComponent, FormInputComponent, FormCustomComponent, FormDividerComponent],
   imports: [CommonModule, ReactiveFormsModule, NgbModule],
-  exports: [FormGridComponent, FormInputComponent, FormCustomComponent, FormDividerComponent, NgbModule]
+  exports: [FormGridComponent, FormInputComponent, FormCustomComponent, FormDividerComponent],
+  providers: [
+    {provide: OPTIONS, useValue: defaultOptions}
+  ]
 })
 export class McFormGridModule { }

@@ -8,10 +8,12 @@ import {
   AfterViewInit,
   AfterContentChecked,
   ContentChildren,
+  Inject,
 } from '@angular/core';
 import { combineLatest, Subscription } from 'rxjs';
 import { FormCustomComponent } from './form-custom/form-custom.component';
 import { FormInputComponent } from './form-input/form-input.component';
+import { Options, OPTIONS, defaultOptions } from './optionsConfig';
 
 /**
  * A component that creates a grid within it, with the number of columns specified by the `columns` Input.
@@ -61,22 +63,22 @@ export class FormGridComponent implements OnInit, AfterViewInit {
    * mc-form-grid will create sub-columns from this number to make these label and input areas, so the actual number of columns in the grid will be `columns * 2`
    * For all intents and purposes though, this piece of information can be ignored.
    */
-  @Input() columns = '1';
+  @Input() columns:string;
   /** Specify a hard width for all labels. Not recommended to use this.  */
-  @Input() labelWidth = 'auto';
-  @Input() labelPadding = '0px';
+  @Input() labelWidth:string;
+  @Input() labelPadding:string;
   /** Automatically makes the label bold. */
-  @Input() boldLabel = true;
+  @Input() boldLabel:boolean;
   /** Appends a colon to every form-input and form-custom label. Labels with asterisks as their last character will have it moved to the outside of the colon.*/
-  @Input() appendColon = true;
+  @Input() appendColon:boolean;
   /** Defaults to aligning label text to the left, but if true the label is aligned right. */
-  @Input() textAlignLeft = true;
+  @Input() textAlignLeft:boolean;
   /** If label width exceeds this length, wrap the label. */
-  @Input() maxLabelWidth = 'auto';
+  @Input() maxLabelWidth:string;
   /**
    * Toggles whether error highlights show on invalid form inputs after they've been touched.
    * False means no error highlights show unless `errorHighlight` is true */
-  @Input() errorHighlightOnTouched = true;
+  @Input() errorHighlightOnTouched:boolean;
   /**
    * Toggles error highlights on/off for invalid form inputs.
    * Automatically and always false if `errorHighlightOnTouched` is true. Otherwise, can be toggled on and off by parent component.
@@ -86,7 +88,7 @@ export class FormGridComponent implements OnInit, AfterViewInit {
    *
    * @example <mc-form-grid [errorHighlight]="formHasBeenSubmitted"> - only displays errors after a form has been submitted and not before.
    * */
-  @Input() errorHighlight = true;
+  @Input() errorHighlight:boolean;
 
   @ContentChildren(FormInputComponent)
   formInputs: QueryList<FormInputComponent>;
@@ -95,7 +97,17 @@ export class FormGridComponent implements OnInit, AfterViewInit {
 
   childFormChangesSubscription: Subscription;
 
-  constructor(private element: ElementRef) {}
+  constructor(private element: ElementRef, @Inject(OPTIONS) private options: Options) {
+    this.columns ??= this.options.formGrid.columns ?? defaultOptions.formGrid.columns;
+    this.labelPadding ??= this.options.formGrid.labelPadding ?? defaultOptions.formGrid.labelPadding;
+    this.labelWidth ??= this.options.formGrid.labelWidth ?? defaultOptions.formGrid.labelWidth;
+    this.maxLabelWidth ??= this.options.formGrid.maxLabelWidth ?? defaultOptions.formGrid.maxLabelWidth;
+    this.boldLabel ??= this.options.formGrid.boldLabel ?? defaultOptions.formGrid.boldLabel;
+    this.errorHighlight ??= this.options.formGrid.errorHighlight ?? defaultOptions.formGrid.errorHighlight;
+    this.errorHighlightOnTouched ??= this.options.formGrid.errorHighlightOnTouched ?? defaultOptions.formGrid.errorHighlightOnTouched;
+    this.appendColon ??= this.options.formGrid.appendColon ?? defaultOptions.formGrid.appendColon;
+    this.textAlignLeft ??= this.options.formGrid.textAlignLeft ?? defaultOptions.formGrid.textAlignLeft;
+  }
 
   ngOnInit(): void {
     this.element.nativeElement.style.setProperty(
