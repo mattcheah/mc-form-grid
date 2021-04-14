@@ -8,7 +8,6 @@ import { FormInputComponent } from './form-input/form-input.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { defaultOptions, OPTIONS } from './optionsConfig';
 
-
 @NgModule({
   declarations: [FormGridComponent, FormInputComponent, FormCustomComponent, FormDividerComponent],
   imports: [CommonModule, ReactiveFormsModule, NgbModule],

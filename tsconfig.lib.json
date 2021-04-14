@@ -11,7 +11,9 @@
     "lib": [
       "dom",
       "es2018"
-    ]
+    ],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata":false
   },
   "angularCompilerOptions": {
     "skipTemplateCodegen": true,
