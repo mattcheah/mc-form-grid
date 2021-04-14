@@ -10,7 +10,7 @@
     &.auto-labels {
       grid-template-columns: repeat(var(--gridColumns), var(--labelWidth) 1fr);
 
-      // IMPORTANT: ON Mobile, The app-form-grid cannot be more than 1 column. (technically 2 columns - label and field)
+      // IMPORTANT: ON Mobile, The mc-form-grid cannot be more than 1 column. (technically 2 columns - label and field)
       // The @include mobile {} statements disregard all CSS variables and ensure that col-a and col-b only take up 1 column each and start and end on col 1 and 2, respectively.
       @include mobile {
         grid-template-columns: var(--labelWidth) 1fr;
@@ -26,8 +26,8 @@
       }
     }
 
-    app-form-input,
-    app-form-custom {
+    mc-form-input,
+    mc-form-custom {
       // display: flex;
       // justify-content: space-between;
       display: contents;
@@ -83,8 +83,8 @@
   // Fix for IE and other browsers that don't have CSS grid. Make sure that text label is on the left side instead of the right, directly above the form input.
   .no-cssgrid {
     .form-grid {
-      app-form-input,
-      app-form-custom {
+      mc-form-input,
+      mc-form-custom {
         .col-a {
           text-align: left;
         }

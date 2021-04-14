@@ -1,24 +1,14 @@
-# McFormGrid
+# MC Form Grid
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.9.
+A library for creating easy form and form labels laid out inside a CSS grid, with easily customizable columns.
 
-## Code scaffolding
+Set any number of columns in width, label your form elements, and decide how many column widths you want them to take up.
 
-Run `ng generate component component-name --project mc-form-grid` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project mc-form-grid`.
-> Note: Don't forget to add `--project mc-form-grid` or else it will be added to the default project in your `angular.json` file. 
+Labels can align left or right, and will expand to the width of the widest label unless you specify a max-width.
 
-## Build
+Use mc-form-divider to split sections of your form, and use mc-form-custom to add form elements that are not input/select/textarea elements - eg. buttons, radio elements, descriptive text.
 
-Run `ng build mc-form-grid` to build the project. The build artifacts will be stored in the `dist/` directory.
+Specify your FormControl and provide an errors object to display errors on the FormControl automatically.
 
-## Publishing
+Import @NgBootstrap to append a descriptive popover icon at the end of an <input> field.
 
-After building your library with `ng build mc-form-grid`, go to the dist folder `cd dist/mc-form-grid` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test mc-form-grid` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
