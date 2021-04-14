@@ -15,7 +15,9 @@
     margin: var(--margin) 0;
   }
 }
-.justify-content-between {
+
+#labeled-line {
+  display:flex;
   grid-column: 1 / -1;
   align-items: center;
   div {
@@ -26,6 +28,7 @@
     flex: 1 0 auto;
   }
 }
+
 .line {
   width: var(--lineWidth);
   border-bottom: 1px solid darken(#DDD, 5);
