@@ -4,6 +4,7 @@ import { FormControl } from "@angular/forms";
 export const FORM_GRID_OPTIONS = new InjectionToken<string>('FORM_GRID_OPTIONS');
 export const FORM_INPUT_OPTIONS = new InjectionToken<string>('FORM_INPUT_OPTIONS');
 export const FORM_CUSTOM_OPTIONS = new InjectionToken<string>('FORM_CUSTOM_OPTIONS');
+export const COLOR_OPTIONS = new InjectionToken<string>('COLOR_OPTIONS');
 
 export interface FormGridOptions {
     columns: string;
@@ -83,3 +84,7 @@ export const defaultFormCustomOptions: FormCustomOptions = {
   startingCol: 'auto'
 }
 
+export interface ColorOptions {
+  primaryColor:string;
+  errorColor:string;
+}

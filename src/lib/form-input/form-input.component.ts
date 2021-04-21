@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { defaultFormInputOptions, FormInputOptions, FORM_INPUT_OPTIONS } from '../optionsConfig';
+import { ColorOptions, COLOR_OPTIONS, defaultFormInputOptions, FormInputOptions, FORM_INPUT_OPTIONS } from '../optionsConfig';
 
 @Component({
   selector: '[mc-form-input], mc-form-input',
@@ -84,7 +84,10 @@ export class FormInputComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   controlStatusSubscription: Subscription;
 
-  constructor(private element: ElementRef, @Inject(FORM_INPUT_OPTIONS) private options: FormInputOptions) {
+  constructor(
+    private element: ElementRef,
+    @Inject(FORM_INPUT_OPTIONS) private options: FormInputOptions,
+    @Inject(COLOR_OPTIONS) private colorOptions: ColorOptions) {
     this.label ??= this.options.label ?? defaultFormInputOptions.label;
     this.columnSpan ??= this.options.columnSpan ?? defaultFormInputOptions.columnSpan;
     this.rowSpan ??= this.options.rowSpan ?? defaultFormInputOptions.rowSpan;
@@ -128,7 +131,11 @@ export class FormInputComponent implements OnInit, AfterViewInit, OnDestroy {
     this.element.nativeElement.style.setProperty(
       '--startingCol',
       this.startingCol
-    );
+      );
+
+      this.element.nativeElement.style.setProperty('--primaryColor', this.colorOptions.primaryColor);
+      this.element.nativeElement.style.setProperty('--errorColor', this.colorOptions.errorColor);
+
 
     if (this.validationMessages && !this.control) {
       console.warn(
