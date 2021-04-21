@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { ColorOptions, COLOR_OPTIONS, defaultFormInputOptions, FormInputOptions, FORM_INPUT_OPTIONS } from '../optionsConfig';
+import { ColorOptions, COLOR_OPTIONS, defaultColorOptions, defaultFormInputOptions, FormInputOptions, FORM_INPUT_OPTIONS } from '../optionsConfig';
 
 @Component({
   selector: '[mc-form-input], mc-form-input',
@@ -133,8 +133,8 @@ export class FormInputComponent implements OnInit, AfterViewInit, OnDestroy {
       this.startingCol
       );
 
-      this.element.nativeElement.style.setProperty('--primaryColor', this.colorOptions.primaryColor);
-      this.element.nativeElement.style.setProperty('--errorColor', this.colorOptions.errorColor);
+      this.element.nativeElement.style.setProperty('--primaryColor', this.colorOptions.primaryColor ?? defaultColorOptions.primaryColor);
+      this.element.nativeElement.style.setProperty('--errorColor', this.colorOptions.errorColor ?? defaultColorOptions.errorColor);
 
 
     if (this.validationMessages && !this.control) {

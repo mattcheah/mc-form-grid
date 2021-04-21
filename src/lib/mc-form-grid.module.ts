@@ -6,7 +6,7 @@ import { FormDividerComponent } from './form-divider/form-divider.component';
 import { FormGridComponent } from './form-grid.component';
 import { FormInputComponent } from './form-input/form-input.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { COLOR_OPTIONS, defaultFormCustomOptions, defaultFormGridOptions, defaultFormInputOptions, FORM_CUSTOM_OPTIONS, FORM_GRID_OPTIONS, FORM_INPUT_OPTIONS } from './optionsConfig';
+import { COLOR_OPTIONS, defaultColorOptions, defaultFormCustomOptions, defaultFormGridOptions, defaultFormInputOptions, FORM_CUSTOM_OPTIONS, FORM_GRID_OPTIONS, FORM_INPUT_OPTIONS } from './optionsConfig';
 
 @NgModule({
   declarations: [FormGridComponent, FormInputComponent, FormCustomComponent, FormDividerComponent],
@@ -16,10 +16,7 @@ import { COLOR_OPTIONS, defaultFormCustomOptions, defaultFormGridOptions, defaul
     {provide: FORM_GRID_OPTIONS, useValue: defaultFormGridOptions},
     {provide: FORM_INPUT_OPTIONS, useValue: defaultFormInputOptions},
     {provide: FORM_CUSTOM_OPTIONS, useValue: defaultFormCustomOptions},
-    {provide: COLOR_OPTIONS, useValue: {
-      primaryColor: "#444",
-      errorColor: "#990000",
-    }}
+    {provide: COLOR_OPTIONS, useValue: defaultColorOptions}
   ]
 })
 export class McFormGridModule { }

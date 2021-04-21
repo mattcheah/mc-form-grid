@@ -88,3 +88,8 @@ export interface ColorOptions {
   primaryColor:string;
   errorColor:string;
 }
+
+export const defaultColorOptions: ColorOptions = {
+  primaryColor: "#444",
+  errorColor: "#990000",
+};

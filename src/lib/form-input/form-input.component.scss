@@ -150,4 +150,7 @@
   // .invalid p.validation-message {
   //   display: block;
   // }
+  .text-danger {
+    color: var(--errorColor) !important;
+  }
 }
