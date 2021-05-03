@@ -87,9 +87,8 @@
     triggers="mouseenter:mouseleave"
     [container]="containerBody ? 'body' : 'null'"
   >{{ label }}</label>
-  <ng-container>
-
-    <label *ngIf="tooltipLocation == 'label-end'" for="form-input"
+  <ng-container *ngIf="tooltipLocation == 'label-end'">
+    <label for="form-input" class="margin-right-1"
     >{{ label }}</label>
     <ng-container *ngTemplateOutlet="questionIcon">
     </ng-container>

@@ -60,6 +60,10 @@ export class FormInputComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() questionTitle: string;
   @Input() questionPlacement: 'top' | 'left' | 'right' | 'bottom' = 'top';
   @Input() containerBody = true;
+  /** By Default, an input-button icon wil appear at the end of the input.
+   * If this value is 'over-label', hovering over the label will display the popover.
+   * If this label is label-end, an icon will appear at the end of the label. NOTE: in order for this to look good, alignVertical must be set to true.
+   */
   @Input() tooltipLocation: 'over-label' | 'icon-end' | 'label-end' = "icon-end";
 
   /** A message that shows only if the input is invalid */
