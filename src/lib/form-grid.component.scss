@@ -1,6 +1,14 @@
 @import '../_variables';
 
 ::ng-deep {
+  @supports not (display: contents) { /* Edge/IE workaround. Basically removes grid components and labelpadding cause it looks terrible */
+    .form-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .col-a {
+      padding-left:0px !important;
+    }
+  }
   .form-grid {
     width: 100%;
     display: grid;

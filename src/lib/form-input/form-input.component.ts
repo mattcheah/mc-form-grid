@@ -15,7 +15,7 @@ import { ColorOptions, COLOR_OPTIONS, defaultColorOptions, defaultFormInputOptio
 @Component({
   selector: '[mc-form-input], mc-form-input',
   templateUrl: './form-input.component.html',
-  styleUrls: ['./form-input.component.scss'],
+  styleUrls: ['./form-input.component.scss', '../shared-css.scss'],
 })
 export class FormInputComponent implements OnInit, AfterViewInit, OnDestroy {
   /**

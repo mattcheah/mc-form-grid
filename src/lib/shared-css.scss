@@ -1,0 +1,52 @@
+::ng-deep {
+  // Do not show the validation messages at first until a parent class is added.
+  p.validation-message {
+    display: none;
+  }
+
+  .error-highlight-on-touched {
+    input,
+    textarea,
+    select {
+      &.ng-invalid.ng-touched:not(.no-error-highlight) {
+        border: 2px solid var(--errorColor);
+        box-shadow: 0 0 0 0.2rem rgba(164, 2, 0, 0.25);
+      }
+      &.ng-invalid.ng-touched,
+      .invalid {
+        ~ p.validation-message {
+          display: block;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  .error-highlight {
+    input,
+    textarea,
+    select,
+    .input-group {
+      &.ng-invalid:not(.no-error-highlight) {
+        border: 2px solid var(--errorColor);
+        box-shadow: 0 0 0 0.2rem rgba(164, 2, 0, 0.25);
+      }
+      &.ng-invalid,
+      .invalid {
+        ~ p.validation-message {
+          display: block;
+          margin-bottom: 0;
+        }
+      }
+    }
+    .input-group.ng-invalid input {
+      border: unset;
+      box-shadow: unset;
+    }
+  }
+  // .invalid p.validation-message {
+  //   display: block;
+  // }
+  .text-danger {
+    color: var(--errorColor) !important;
+  }
+}

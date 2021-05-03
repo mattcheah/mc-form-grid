@@ -6,12 +6,12 @@ import {
   AfterViewInit,
   Inject,
 } from '@angular/core';
-import { defaultFormCustomOptions, FormCustomOptions, FORM_CUSTOM_OPTIONS } from '../optionsConfig';
+import { ColorOptions, COLOR_OPTIONS, defaultColorOptions, defaultFormCustomOptions, FormCustomOptions, FORM_CUSTOM_OPTIONS } from '../optionsConfig';
 
 @Component({
   selector: 'mc-form-custom',
   templateUrl: './form-custom.component.html',
-  styleUrls: ['./form-custom.component.scss'],
+  styleUrls: ['./form-custom.component.scss', '../shared-css.scss'],
 })
 export class FormCustomComponent implements OnInit, AfterViewInit {
   /**
@@ -44,7 +44,9 @@ export class FormCustomComponent implements OnInit, AfterViewInit {
 
   childContentLoaded = false;
 
-  constructor(private element: ElementRef, @Inject(FORM_CUSTOM_OPTIONS) private options: FormCustomOptions) {
+  constructor(private element: ElementRef,
+    @Inject(FORM_CUSTOM_OPTIONS) private options: FormCustomOptions,
+    @Inject(COLOR_OPTIONS) private colorOptions: ColorOptions) {
     this.label ??= options.label ?? defaultFormCustomOptions.label;
     this.noLabel ??= options.noLabel ?? defaultFormCustomOptions.noLabel;
     this.columnSpan ??= options.columnSpan ?? defaultFormCustomOptions.columnSpan;
@@ -93,6 +95,9 @@ export class FormCustomComponent implements OnInit, AfterViewInit {
       '--startingCol',
       this.startingCol
     );
+
+    this.element.nativeElement.style.setProperty('--primaryColor', this.colorOptions.primaryColor ?? defaultColorOptions.primaryColor);
+    this.element.nativeElement.style.setProperty('--errorColor', this.colorOptions.errorColor ?? defaultColorOptions.errorColor);
   }
 
   ngAfterViewInit() {
