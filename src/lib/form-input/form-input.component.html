@@ -6,7 +6,9 @@
     'vertical-align': alignVertical
   }"
 >
-  <label for="form-input">{{ label }}</label>
+  <ng-container *ngIf="!questionText || tooltipLocation == 'icon-end'; else labelHover;">
+    <label for="form-input" >{{ label }}</label>
+  </ng-container>
 </div>
 <div
   class="col-b grid-item"
@@ -26,7 +28,11 @@
   </ng-container>
 </div>
 
-<ng-container *ngIf="questionText">
+<ng-container *ngIf="questionText && tooltipLocation === 'icon-end'">
+  <ng-container *ngTemplateOutlet="questionIcon"></ng-container>
+</ng-container>
+
+<ng-template #questionIcon>
   <div
     id="hover-input-group-append"
     class="input-group-append"
@@ -36,9 +42,9 @@
     triggers="mouseenter:mouseleave"
     [container]="containerBody ? 'body' : 'null'"
   >
-    <i class="input-group-text fa fa-question-circle-o" aria-hidden="true"></i>
+    <i class="fa fa-question-circle-o" [class.input-group-text]="tooltipLocation === 'icon-end'" aria-hidden="true"></i>
   </div>
-</ng-container>
+</ng-template>
 
 <ng-template #errorMessages>
   <ng-content></ng-content>
@@ -69,5 +75,23 @@
         string
       }}</small>
     </p>
+  </ng-container>
+</ng-template>
+
+
+<ng-template #labelHover>
+  <label *ngIf="tooltipLocation == 'over-label'" for="form-input"
+    [popoverTitle]="questionTitle ? questionTitle : null"
+    [ngbPopover]="questionText"
+    [placement]="questionPlacement"
+    triggers="mouseenter:mouseleave"
+    [container]="containerBody ? 'body' : 'null'"
+  >{{ label }}</label>
+  <ng-container>
+
+    <label *ngIf="tooltipLocation == 'label-end'" for="form-input"
+    >{{ label }}</label>
+    <ng-container *ngTemplateOutlet="questionIcon">
+    </ng-container>
   </ng-container>
 </ng-template>

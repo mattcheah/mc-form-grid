@@ -60,6 +60,7 @@ export class FormInputComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() questionTitle: string;
   @Input() questionPlacement: 'top' | 'left' | 'right' | 'bottom' = 'top';
   @Input() containerBody = true;
+  @Input() tooltipLocation: 'over-label' | 'icon-end' | 'label-end' = "icon-end";
 
   /** A message that shows only if the input is invalid */
   @Input() errorMsg: string | string[];
