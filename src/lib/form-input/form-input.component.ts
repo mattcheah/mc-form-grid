@@ -9,6 +9,7 @@ import {
   Inject,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'node:constants';
 import { Subscription } from 'rxjs';
 import { ColorOptions, COLOR_OPTIONS, defaultColorOptions, defaultFormInputOptions, FormInputOptions, FORM_INPUT_OPTIONS } from '../optionsConfig';
 
@@ -139,7 +140,18 @@ export class FormInputComponent implements OnInit, AfterViewInit, OnDestroy {
       );
 
       this.element.nativeElement.style.setProperty('--primaryColor', this.colorOptions.primaryColor ?? defaultColorOptions.primaryColor);
-      this.element.nativeElement.style.setProperty('--errorColor', this.colorOptions.errorColor ?? defaultColorOptions.errorColor);
+      let errorColorString = this.colorOptions.errorColor ?? defaultColorOptions.errorColor;
+      let errorColor2:string;
+      if (errorColorString.includes('#')) {
+        errorColor2 = errorColorString+"33";
+      } else if (errorColorString.includes('rgb(')) {
+        let index = errorColorString.indexOf(')');
+        errorColor2 = errorColorString.slice(0, index) + ',.2)';
+      } else {
+        errorColor2 = "#99000033";
+      }
+      this.element.nativeElement.style.setProperty('--errorColor', errorColorString);
+      this.element.nativeElement.style.setProperty('--errorColor2', errorColor2);
 
 
     if (this.validationMessages && !this.control) {

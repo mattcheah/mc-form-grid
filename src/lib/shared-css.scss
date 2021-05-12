@@ -10,7 +10,7 @@
     select {
       &.ng-invalid.ng-touched:not(.no-error-highlight) {
         border: 2px solid var(--errorColor);
-        box-shadow: 0 0 0 0.2rem rgba(164, 2, 0, 0.25);
+        box-shadow: 0 0 0 0.2rem var(--errorColor2);
       }
       &.ng-invalid.ng-touched,
       .invalid {
@@ -28,7 +28,7 @@
     .input-group {
       &.ng-invalid:not(.no-error-highlight) {
         border: 2px solid var(--errorColor);
-        box-shadow: 0 0 0 0.2rem rgba(164, 2, 0, 0.25);
+        box-shadow: 0 0 0 0.2rem var(--errorColor2);
       }
       &.ng-invalid,
       .invalid {

@@ -79,6 +79,7 @@ export class FormGridComponent implements OnInit, AfterViewInit {
    * Toggles whether error highlights show on invalid form inputs after they've been touched.
    * False means no error highlights show unless `errorHighlight` is true */
   @Input() errorHighlightOnTouched:boolean;
+
   /**
    * Toggles error highlights on/off for invalid form inputs.
    * Automatically and always false if `errorHighlightOnTouched` is true. Otherwise, can be toggled on and off by parent component.
