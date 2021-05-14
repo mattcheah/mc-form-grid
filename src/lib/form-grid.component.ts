@@ -69,7 +69,9 @@ export class FormGridComponent implements OnInit, AfterViewInit {
   @Input() labelPadding:string;
   /** Automatically makes the label bold. */
   @Input() boldLabel:boolean;
-  /** Appends a colon to every form-input and form-custom label. Labels with asterisks as their last character will have it moved to the outside of the colon.*/
+  /** Appends a colon to every form-input and form-custom label. Labels with asterisks as their last character will have it moved to the outside of the colon.
+   * NOTE: This does not work for mc-form-inputs and mc-form-customs inside an ng-template within the grid.
+  */
   @Input() appendColon:boolean;
   /** Defaults to aligning label text to the left, but if true the label is aligned right. */
   @Input() textAlignLeft:boolean;
