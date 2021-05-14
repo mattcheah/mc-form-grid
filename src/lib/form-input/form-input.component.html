@@ -16,7 +16,7 @@
   [ngClass]="{
     'multi-input': multiInput,
     'hover-icon': questionText,
-    invalid: control?.invalid,
+    invalid: control?.invalid || invalidInput,
     'vertical-align': alignVertical
   }"
 >
@@ -54,7 +54,7 @@
     *ngIf="invalidInput"
     class="validation-message text-danger"
   >
-    {{ errorMsg }}
+    <small>{{ errorMsg }}</small>
   </p>
 
   <ng-container *ngIf="control?.errors && validationMessages">

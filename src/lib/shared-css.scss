@@ -39,6 +39,12 @@
       //   }
       // }
     }
+    .col-b.invalid input, .col-b.invalid textarea, .col-b.invalid select {
+      &:not(.no-error-highlight) {
+        border: 2px solid var(--errorColor);
+        box-shadow: 0 0 0 0.2rem var(--errorColor2);
+      }
+    }
     p.validation-message {
       display: block;
       margin-bottom: 0;
