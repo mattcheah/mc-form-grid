@@ -13,13 +13,18 @@
   }
 }
 .col-b {
-  align-self: center;
+  margin-top:5px;
+  // Added for firefox users.
+  overflow: auto;
+  // Formerly center, but since this is a form-custom it will usually contain text. We don't want it to be vertically centered.
+  align-self: start;
   // grid-column: span var(--columnSpan);
   grid-column: var(--startingCol) / span var(--columnSpan);
   .form-control {
     grid-row-start: 1;
   }
   &.no-label {
+    margin-top:0px;
   }
   // This means that the starting column is auto.
   &.no-start {

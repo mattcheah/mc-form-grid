@@ -1,5 +1,5 @@
-import { InjectionToken } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { InjectionToken } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 export const FORM_GRID_OPTIONS = new InjectionToken<string>('FORM_GRID_OPTIONS');
 export const FORM_INPUT_OPTIONS = new InjectionToken<string>('FORM_INPUT_OPTIONS');
@@ -7,15 +7,15 @@ export const FORM_CUSTOM_OPTIONS = new InjectionToken<string>('FORM_CUSTOM_OPTIO
 export const COLOR_OPTIONS = new InjectionToken<string>('COLOR_OPTIONS');
 
 export interface FormGridOptions {
-    columns: string;
-    labelWidth: string;
-    labelPadding: string;
-    boldLabel: boolean;
-    appendColon:boolean;
-    textAlignLeft: boolean;
-    maxLabelWidth: string;
-    errorHighlightOnTouched: boolean;
-    errorHighlight:boolean;
+  columns: string;
+  labelWidth: string;
+  labelPadding: string;
+  boldLabel: boolean;
+  appendColon: boolean;
+  textAlignLeft: boolean;
+  maxLabelWidth: string;
+  errorHighlightOnTouched: boolean;
+  errorHighlight: boolean;
 }
 export const defaultFormGridOptions: FormGridOptions = {
   columns: '1',
@@ -26,8 +26,8 @@ export const defaultFormGridOptions: FormGridOptions = {
   textAlignLeft: false,
   maxLabelWidth: 'auto',
   errorHighlightOnTouched: true,
-  errorHighlight: false
-}
+  errorHighlight: false,
+};
 
 export interface FormInputOptions {
   label: string;
@@ -45,12 +45,12 @@ export interface FormInputOptions {
   invalidInput: boolean;
   control: FormControl;
   validationMessages: { [x: string]: string };
-  alignVertical:boolean;
+  alignVertical: boolean;
 }
 export const defaultFormInputOptions: FormInputOptions = {
   label: undefined,
-  columnSpan: "1",
-  rowSpan: "1",
+  columnSpan: '1',
+  rowSpan: '1',
   labelWidth: undefined,
   missingInputText: undefined,
   multiInput: false,
@@ -63,8 +63,8 @@ export const defaultFormInputOptions: FormInputOptions = {
   invalidInput: false,
   control: undefined,
   validationMessages: undefined,
-  alignVertical: false
-}
+  alignVertical: false,
+};
 
 export interface FormCustomOptions {
   label: string;
@@ -73,6 +73,7 @@ export interface FormCustomOptions {
   labelWidth: string;
   missingInputText: string | string[];
   startingCol: string | number;
+  alignVertical: boolean;
 }
 
 export const defaultFormCustomOptions: FormCustomOptions = {
@@ -81,15 +82,16 @@ export const defaultFormCustomOptions: FormCustomOptions = {
   columnSpan: undefined,
   labelWidth: undefined,
   missingInputText: undefined,
-  startingCol: 'auto'
-}
+  startingCol: 'auto',
+  alignVertical: false,
+};
 
 export interface ColorOptions {
-  primaryColor:string;
-  errorColor:string;
+  primaryColor: string;
+  errorColor: string;
 }
 
 export const defaultColorOptions: ColorOptions = {
-  primaryColor: "#444",
-  errorColor: "#990000",
+  primaryColor: '#444',
+  errorColor: '#990000',
 };

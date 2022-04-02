@@ -1,10 +1,11 @@
 <div class="col-a grid-item" [ngClass]="{
     'first-column': startingCol === '1',
-    'custom-label-width': labelWidth
+    'custom-label-width': labelWidth,
+    'vertical-align': alignVertical
   }" *ngIf="!noLabel">
   <label for="form-input" *ngIf="label">{{ label }}</label>
 </div>
 <div class="col-b grid-item" #formContentContainer
-  [ngClass]="{'no-label': noLabel, 'no-start': startingCol === 'auto'}">
+  [ngClass]="{'no-label': noLabel, 'no-start': startingCol === 'auto', 'vertical-align': alignVertical}">
   <ng-content></ng-content>
 </div>

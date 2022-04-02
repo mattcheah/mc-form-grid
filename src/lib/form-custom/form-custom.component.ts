@@ -1,12 +1,12 @@
+import { Component, OnInit, Input, ElementRef, AfterViewInit, Inject } from '@angular/core';
 import {
-  Component,
-  OnInit,
-  Input,
-  ElementRef,
-  AfterViewInit,
-  Inject,
-} from '@angular/core';
-import { ColorOptions, COLOR_OPTIONS, defaultColorOptions, defaultFormCustomOptions, FormCustomOptions, FORM_CUSTOM_OPTIONS } from '../optionsConfig';
+  ColorOptions,
+  COLOR_OPTIONS,
+  defaultColorOptions,
+  defaultFormCustomOptions,
+  FormCustomOptions,
+  FORM_CUSTOM_OPTIONS,
+} from '../optionsConfig';
 
 @Component({
   selector: 'mc-form-custom',
@@ -40,19 +40,24 @@ export class FormCustomComponent implements OnInit, AfterViewInit {
 
   @Input() startingCol: string | number;
 
+  @Input() alignVertical = false;
+
   calculatedColumnSpan: number | 'auto';
 
   childContentLoaded = false;
 
-  constructor(private element: ElementRef,
+  constructor(
+    private element: ElementRef,
     @Inject(FORM_CUSTOM_OPTIONS) private options: FormCustomOptions,
-    @Inject(COLOR_OPTIONS) private colorOptions: ColorOptions) {
+    @Inject(COLOR_OPTIONS) private colorOptions: ColorOptions
+  ) {
     this.label ??= options.label ?? defaultFormCustomOptions.label;
     this.noLabel ??= options.noLabel ?? defaultFormCustomOptions.noLabel;
     this.columnSpan ??= options.columnSpan ?? defaultFormCustomOptions.columnSpan;
     this.labelWidth ??= options.labelWidth ?? defaultFormCustomOptions.labelWidth;
     this.missingInputText ??= options.missingInputText ?? defaultFormCustomOptions.missingInputText;
-    this.startingCol??= options.startingCol ?? defaultFormCustomOptions.startingCol;
+    this.startingCol ??= options.startingCol ?? defaultFormCustomOptions.startingCol;
+    this.alignVertical ??= options.alignVertical ?? defaultFormCustomOptions.alignVertical;
   }
 
   ngOnInit(): void {
@@ -67,22 +72,14 @@ export class FormCustomComponent implements OnInit, AfterViewInit {
     } else if (!this.columnSpan) {
       this.calculatedColumnSpan = 'auto';
     } else {
-      this.calculatedColumnSpan = this.noLabel
-        ? +this.columnSpan * 2
-        : +this.columnSpan * 2 - 1;
+      this.calculatedColumnSpan = this.noLabel ? +this.columnSpan * 2 : +this.columnSpan * 2 - 1;
     }
 
     if (this.labelWidth) {
-      this.element.nativeElement.style.setProperty(
-        '--individualLabelWidth',
-        this.labelWidth
-      );
+      this.element.nativeElement.style.setProperty('--individualLabelWidth', this.labelWidth);
     }
 
-    this.element.nativeElement.style.setProperty(
-      '--columnSpan',
-      this.calculatedColumnSpan
-    );
+    this.element.nativeElement.style.setProperty('--columnSpan', this.calculatedColumnSpan);
 
     if (this.startingCol !== 'auto') {
       this.startingCol = +this.startingCol * 2;
@@ -91,25 +88,25 @@ export class FormCustomComponent implements OnInit, AfterViewInit {
       }
     }
 
+    this.element.nativeElement.style.setProperty('--startingCol', this.startingCol);
+
     this.element.nativeElement.style.setProperty(
-      '--startingCol',
-      this.startingCol
+      '--primaryColor',
+      this.colorOptions.primaryColor ?? defaultColorOptions.primaryColor
     );
 
-    this.element.nativeElement.style.setProperty('--primaryColor', this.colorOptions.primaryColor ?? defaultColorOptions.primaryColor);
-
     let errorColorString = this.colorOptions.errorColor ?? defaultColorOptions.errorColor;
-      let errorColor2:string;
-      if (errorColorString.includes('#')) {
-        errorColor2 = errorColorString+"33";
-      } else if (errorColorString.includes('rgb(')) {
-        let index = errorColorString.indexOf(')');
-        errorColor2 = errorColorString.slice(0, index) + ',.2)';
-      } else {
-        errorColor2 = "#99000033";
-      }
-      this.element.nativeElement.style.setProperty('--errorColor', errorColorString);
-      this.element.nativeElement.style.setProperty('--errorColor2', errorColor2);
+    let errorColor2: string;
+    if (errorColorString.includes('#')) {
+      errorColor2 = errorColorString + '33';
+    } else if (errorColorString.includes('rgb(')) {
+      let index = errorColorString.indexOf(')');
+      errorColor2 = errorColorString.slice(0, index) + ',.2)';
+    } else {
+      errorColor2 = '#99000033';
+    }
+    this.element.nativeElement.style.setProperty('--errorColor', errorColorString);
+    this.element.nativeElement.style.setProperty('--errorColor2', errorColor2);
   }
 
   ngAfterViewInit() {
