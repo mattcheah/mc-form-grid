@@ -3,5 +3,8 @@
   "dest": "../../dist/mc-form-grid",
   "lib": {
     "entryFile": "src/projects.ts"
-  }
+  },
+  "whitelistedNonPeerDependencies": [
+    "@ng-bootstrap/ng-bootstrap"
+  ]
 }

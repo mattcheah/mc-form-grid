@@ -20,6 +20,10 @@
         }
       }
     }
+    .col-b.invalid p.validation-message {
+        display: block;
+        margin-bottom: 0;
+    }
   }
   .error-highlight {
     input,
