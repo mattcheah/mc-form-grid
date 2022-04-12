@@ -1,25 +1,18 @@
-<div
-  class="col-a grid-item"
-  [ngClass]="{
+<div class="col-a grid-item" [ngClass]="{
     'first-column': startingCol === '1',
     'custom-label-width': labelWidth,
     'vertical-align': alignVertical
-  }"
->
+  }">
   <ng-container *ngIf="!questionText || tooltipLocation == 'icon-end'; else labelHover;">
-    <label for="form-input" >{{ label }}</label>
+    <label for="form-input">{{ label }}</label>
   </ng-container>
 </div>
-<div
-  class="col-b grid-item"
-  #formContentContainer
-  [ngClass]="{
+<div class="col-b grid-item" #formContentContainer [ngClass]="{
     'multi-input': multiInput,
     'hover-icon': questionText,
     invalid: control?.invalid || invalidInput,
     'vertical-align': alignVertical
-  }"
->
+  }">
   <div class="aligned-vertical" *ngIf="alignVertical">
     <ng-container *ngTemplateOutlet="errorMessages"> </ng-container>
   </div>
@@ -33,15 +26,9 @@
 </ng-container>
 
 <ng-template #questionIcon>
-  <div
-    id="hover-input-group-append"
-    class="input-group-append"
-    [popoverTitle]="questionTitle ? questionTitle : null"
-    [ngbPopover]="questionText"
-    [placement]="questionPlacement"
-    triggers="mouseenter:mouseleave"
-    [container]="containerBody ? 'body' : 'null'"
-  >
+  <div id="hover-input-group-append" class="input-group-append" [popoverTitle]="questionTitle ? questionTitle : null"
+    [ngbPopover]="questionText" [placement]="questionPlacement" triggers="mouseenter:mouseleave"
+    [container]="containerBody ? 'body' : 'null'">
     <i class="fa fa-question-circle-o" [class.input-group-text]="tooltipLocation === 'icon-end'" aria-hidden="true"></i>
   </div>
 </ng-template>
@@ -49,47 +36,33 @@
 <ng-template #errorMessages>
   <ng-content></ng-content>
 
-  <p
-    id="invalid-input-message"
-    *ngIf="invalidInput"
-    class="validation-message text-danger"
-  >
+  <p id="invalid-input-message" *ngIf="invalidInput" class="validation-message text-danger">
     <small>{{ errorMsg }}</small>
   </p>
 
   <ng-container *ngIf="control?.errors && validationMessages">
-    <p
-      class="control-errors-message validation-message text-danger"
-      *ngFor="let error of objectKeys(control.errors)"
-    >
+    <p class="control-errors-message validation-message text-danger" *ngFor="let error of objectKeys(control.errors)">
       <small>{{ validationMessages[error] }}</small>
     </p>
   </ng-container>
 
   <ng-container *ngIf="multiInput">
-    <p
-      *ngFor="let string of missingInputText; let i = index"
-      class="multi-missing-input-message validation-message text-danger"
-    >
+    <p *ngFor="let string of missingInputText; let i = index"
+      class="multi-missing-input-message validation-message text-danger">
       <small *ngIf="childContentLoaded && showValidation(i)">{{
         string
-      }}</small>
+        }}</small>
     </p>
   </ng-container>
 </ng-template>
 
 
 <ng-template #labelHover>
-  <label *ngIf="tooltipLocation == 'over-label'" for="form-input"
-    [popoverTitle]="questionTitle ? questionTitle : null"
-    [ngbPopover]="questionText"
-    [placement]="questionPlacement"
-    triggers="mouseenter:mouseleave"
-    [container]="containerBody ? 'body' : 'null'"
-  >{{ label }}</label>
+  <label *ngIf="tooltipLocation == 'over-label'" for="form-input" [popoverTitle]="questionTitle ? questionTitle : null"
+    [ngbPopover]="questionText" [placement]="questionPlacement" triggers="mouseenter:mouseleave"
+    [container]="containerBody ? 'body' : 'null'">{{ label }}</label>
   <ng-container *ngIf="tooltipLocation == 'label-end'">
-    <label for="form-input" class="margin-right-1"
-    >{{ label }}</label>
+    <label for="form-input" class="margin-right-1">{{ label }}</label>
     <ng-container *ngTemplateOutlet="questionIcon">
     </ng-container>
   </ng-container>
