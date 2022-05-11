@@ -3,37 +3,40 @@
     'custom-label-width': labelWidth,
     'vertical-align': alignVertical
   }">
-  <ng-container *ngIf="!questionText || tooltipLocation == 'icon-end'; else labelHover;">
+  <ng-container *ngIf="!labelIsTemplate">
     <label for="form-input">{{ label }}</label>
+  </ng-container>
+  <ng-container *ngIf="labelIsTemplate">
+    <ng-container *ngTemplateOutlet="label"></ng-container>
   </ng-container>
 </div>
 <div class="col-b grid-item" #formContentContainer [ngClass]="{
     'multi-input': multiInput,
-    'hover-icon': questionText,
     invalid: control?.invalid || invalidInput,
+    touched: control?.touched,
     'vertical-align': alignVertical
   }">
   <div class="aligned-vertical" *ngIf="alignVertical">
-    <ng-container *ngTemplateOutlet="errorMessages"> </ng-container>
+    <ng-container *ngTemplateOutlet="content"> </ng-container>
   </div>
   <ng-container *ngIf="!alignVertical">
-    <ng-container *ngTemplateOutlet="errorMessages"> </ng-container>
+    <ng-container *ngTemplateOutlet="content"> </ng-container>
   </ng-container>
 </div>
 
-<ng-container *ngIf="questionText && tooltipLocation === 'icon-end'">
+<!-- <ng-container *ngIf="questionText && tooltipLocation === 'icon-end'">
   <ng-container *ngTemplateOutlet="questionIcon"></ng-container>
-</ng-container>
+</ng-container> -->
 
-<ng-template #questionIcon>
+<!-- <ng-template #questionIcon>
   <div id="hover-input-group-append" class="input-group-append" [popoverTitle]="questionTitle ? questionTitle : null"
     [ngbPopover]="questionText" [placement]="questionPlacement" triggers="mouseenter:mouseleave"
-    [container]="containerBody ? 'body' : 'null'">
+    [container]="containerBody ? 'body' : null">
     <i class="fa fa-question-circle-o" [class.input-group-text]="tooltipLocation === 'icon-end'" aria-hidden="true"></i>
   </div>
-</ng-template>
+</ng-template> -->
 
-<ng-template #errorMessages>
+<ng-template #content>
   <ng-content></ng-content>
 
   <p id="invalid-input-message" *ngIf="invalidInput" class="validation-message text-danger">
@@ -57,7 +60,7 @@
 </ng-template>
 
 
-<ng-template #labelHover>
+<!-- <ng-template #labelHover>
   <label *ngIf="tooltipLocation == 'over-label'" for="form-input" [popoverTitle]="questionTitle ? questionTitle : null"
     [ngbPopover]="questionText" [placement]="questionPlacement" triggers="mouseenter:mouseleave"
     [container]="containerBody ? 'body' : 'null'">{{ label }}</label>
@@ -66,4 +69,4 @@
     <ng-container *ngTemplateOutlet="questionIcon">
     </ng-container>
   </ng-container>
-</ng-template>
+</ng-template> -->

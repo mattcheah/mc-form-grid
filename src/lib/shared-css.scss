@@ -7,13 +7,14 @@
   .error-highlight-on-touched {
     input,
     textarea,
-    select {
+    select,
+    .input-group {
       &.ng-invalid.ng-touched:not(.no-error-highlight) {
         border: 2px solid var(--errorColor);
         box-shadow: 0 0 0 0.2rem var(--errorColor2);
       }
       &.ng-invalid.ng-touched,
-      .invalid {
+      .invalid.touched {
         ~ p.validation-message {
           display: block;
           margin-bottom: 0;
@@ -21,6 +22,7 @@
       }
     }
   }
+
   .error-highlight {
     input,
     textarea,
@@ -39,6 +41,8 @@
       //   }
       // }
     }
+
+    // This was a bad idea and whoever designed it deserves to be shot.
     .col-b.invalid input, .col-b.invalid textarea, .col-b.invalid select {
       &:not(.no-error-highlight) {
         border: 2px solid var(--errorColor);

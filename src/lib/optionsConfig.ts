@@ -37,10 +37,6 @@ export interface FormInputOptions {
   missingInputText: string | string[];
   multiInput: boolean;
   startingCol: string;
-  questionText: string;
-  questionTitle: string;
-  questionPlacement: 'top' | 'left' | 'right' | 'bottom';
-  containerBody: boolean;
   errorMsg: string;
   invalidInput: boolean;
   control: FormControl;
@@ -55,10 +51,6 @@ export const defaultFormInputOptions: FormInputOptions = {
   missingInputText: undefined,
   multiInput: false,
   startingCol: undefined,
-  questionText: undefined,
-  questionTitle: undefined,
-  questionPlacement: undefined,
-  containerBody: true,
   errorMsg: undefined,
   invalidInput: false,
   control: undefined,
